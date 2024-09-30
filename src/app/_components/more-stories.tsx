@@ -1,5 +1,5 @@
 import { Post } from '@/interfaces/post';
-import { PostPreview } from './post-preview';
+import { PostPreview } from './posts/post-preview';
 
 type Props = {
   posts: Post[];
@@ -9,9 +9,9 @@ export function MoreStories({ posts }: Props) {
   return (
     <section>
       <h2 className="mb-8 text-5xl font-bold leading-tight tracking-tighter md:text-7xl">
-        More Stories
+        Past Projects
       </h2>
-      <div className="mb-32 grid grid-cols-1 gap-y-20 md:grid-cols-2 md:gap-x-16 md:gap-y-32 lg:gap-x-32">
+      <div className="mb-16 grid grid-cols-1 gap-y-20 md:grid-cols-2 md:gap-x-16 md:gap-y-32 lg:gap-x-32">
         {posts.map((post) => (
           <PostPreview
             key={post.slug}
@@ -23,6 +23,14 @@ export function MoreStories({ posts }: Props) {
             excerpt={post.excerpt}
           />
         ))}
+      </div>
+      <div className="mb-32 grid grid-cols-1 gap-y-20 md:grid-cols-2 md:gap-x-16 md:gap-y-32 lg:gap-x-32">
+        <a
+          href="#"
+          className="mx-3 mb-6 border border-black bg-black px-12 py-3 font-bold text-white transition-colors duration-200 hover:bg-white hover:text-black lg:mb-0 lg:px-8"
+        >
+          Full list of past projects
+        </a>
       </div>
     </section>
   );

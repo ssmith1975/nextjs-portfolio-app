@@ -9,6 +9,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.8",
+    "@heroicons/react": "^2.1.5",
     "classnames": "^2.5.1",
     "date-fns": "^3.6.0",
     "gray-matter": "^4.0.3",
