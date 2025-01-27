@@ -1,7 +1,5 @@
 import { Skill } from '@/interfaces/skills/skill';
 import { SkillPreview } from './skills/skill-preview';
-//import { SkillsIntro } from './skills-intro';
-//import { SkillTitle } from './skills/skill-title';
 import { SkillSubHeader } from './skills/skill-subheader';
 import { SkillBody } from './skills/skill-body';
 import { SectionSeparator } from './section-separator';
@@ -16,9 +14,7 @@ type Props = {
 };
 
 function GetSkills(): Skill[] {
-  //const allSkills = getAllSkills();
-  const [_, ...skillsSliced] = getAllSkills(); // allSkills.slice(1);
-  //const content = await markdownToHtml(skill.content || '');
+  const [_, ...skillsSliced] = getAllSkills();
 
   return skillsSliced;
 }

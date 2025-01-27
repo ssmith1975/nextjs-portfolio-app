@@ -6,7 +6,7 @@ type Props = {
 
 export function SkillBody({ content }: Props) {
   return (
-    <div className="mx-auto mb-16 max-w-2xl">
+    <div className="mx-auto mb-16">
       <div
         className={markdownStyles['markdown']}
         dangerouslySetInnerHTML={{ __html: content }}

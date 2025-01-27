@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import { getSkillBySlug } from '@/lib/api';
-//import { getAllSkills, getSkillBySlug } from '@/lib/api';
-// import { Skill } from '@/interfaces/skills/skill';
 import markdownToHtml from '@/lib/markdownToHtml';
 import { SkillBody } from '@/app/_components/skills/skill-body';
 import { SkillHeader } from '@/app/_components/skills/skill-header';
 import React from 'react';
-//import Icon from '@/app/_components/icon';
+
 const slug = 'overview';
 import { ReactNode } from 'react';
 

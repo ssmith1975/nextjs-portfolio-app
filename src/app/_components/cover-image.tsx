@@ -1,7 +1,6 @@
 import cn from 'classnames';
 import Link from 'next/link';
 import Image from 'next/image';
-import { coverImageDims } from '@/lib/constants';
 
 type Props = {
   title: string;

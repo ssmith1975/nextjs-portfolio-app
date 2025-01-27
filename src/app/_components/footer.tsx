@@ -1,5 +1,4 @@
 import Container from '@/app/_components/container';
-//import { EXAMPLE_PATH } from '@/lib/constants';
 
 export function Footer() {
   return (
@@ -16,12 +15,6 @@ export function Footer() {
             >
               Code samples on GitHub
             </a>
-            {/* <a
-              href={`https://github.com/ssmith1975`}
-              className="mx-3 font-bold hover:underline"
-            >
-              Code samples on GitHub
-            </a> */}
           </div>
         </div>
       </Container>
