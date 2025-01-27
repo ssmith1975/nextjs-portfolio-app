@@ -9,3 +9,4 @@ export const coverImageDims = { width: 1300, height: 630 };
 export const avatarWidth = 72;
 export const avatarHeight = 72;
 export const avatarImageDims = { width: 72, height: 72 };
+export const iconImageDims = { width: 92, height: 92 };

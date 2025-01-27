@@ -16,3 +16,38 @@ input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+div > ul {
+  list-style: disc;
+  list-style-position: inside;
+  margin-left: 2rem;
+}
+
+li ul {
+  list-style: circle;
+  list-style-position: inside;
+  margin-top: 0;
+  margin-left: 2rem;
+}
+
+li > ul ul {
+  list-style: square;
+  list-style-position: inside;
+  margin-top: 0;
+  margin-left: 2rem;
+} /* */
+
+li {
+  margin-top: 0.5rem;
+}
+
+h4 {
+  font-weight: normal;
+  color: #222;
+  font-variant: small-caps;
+  color: rgb(220, 81, 6);
+  font-size: larger;
+}
+h4 + p {
+  font-size: 90%;
+}

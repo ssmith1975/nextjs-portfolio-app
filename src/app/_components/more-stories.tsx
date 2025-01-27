@@ -1,4 +1,4 @@
-import { Post } from '@/interfaces/post';
+import { Post } from '@/interfaces/_posts/post';
 import { PostPreview } from './posts/post-preview';
 
 type Props = {
@@ -8,9 +8,6 @@ type Props = {
 export function MoreStories({ posts }: Props) {
   return (
     <section>
-      <h2 className="mb-8 text-5xl font-bold leading-tight tracking-tighter md:text-7xl">
-        Past Projects
-      </h2>
       <div className="mb-16 grid grid-cols-1 gap-y-20 md:grid-cols-2 md:gap-x-16 md:gap-y-32 lg:gap-x-32">
         {posts.map((post) => (
           <PostPreview

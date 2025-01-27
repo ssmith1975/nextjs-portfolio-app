@@ -1,20 +1,30 @@
-export function SkillsIntro() {
+import Link from 'next/link';
+import { getSkillBySlug } from '@/lib/api';
+//import { getAllSkills, getSkillBySlug } from '@/lib/api';
+// import { Skill } from '@/interfaces/skills/skill';
+import markdownToHtml from '@/lib/markdownToHtml';
+import { SkillBody } from '@/app/_components/skills/skill-body';
+import { SkillHeader } from '@/app/_components/skills/skill-header';
+import React from 'react';
+//import Icon from '@/app/_components/icon';
+const slug = 'overview';
+import { ReactNode } from 'react';
+
+type Props = {
+  children?: ReactNode;
+};
+export async function SkillsIntro({ children }: Props) {
+  const skill = getSkillBySlug(slug);
+  const content = await markdownToHtml(skill.content || '');
+  const childrenContent = children ? children : '';
+
   return (
-    <section>
+    <article className="mb-32">
       <h2 className="mb-8 text-5xl font-bold leading-tight tracking-tighter md:text-7xl">
         Skills
       </h2>
-      <div className="mb-16 grid grid-cols-1 gap-y-20 md:grid-cols-2 md:gap-x-16 md:gap-y-32 lg:gap-x-32">
-        <p>Skillsets goes here</p>
-      </div>
-      <div className="mb-32 grid grid-cols-1 gap-y-20 md:grid-cols-2 md:gap-x-16 md:gap-y-32 lg:gap-x-32">
-        <a
-          href="#"
-          className="mx-3 mb-6 border border-black bg-black px-12 py-3 font-bold text-white transition-colors duration-200 hover:bg-white hover:text-black lg:mb-0 lg:px-8"
-        >
-          Full list of skills
-        </a>
-      </div>
-    </section>
+      <SkillBody content={content} />
+      <section className="mt-16">{childrenContent}</section>
+    </article>
   );
 }
