@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     images: [HOME_OG_IMAGE_URL],
   },
 };
-
+export const revalidate = 300; //3600 // revalidate at most every hour
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -64,7 +64,7 @@ export default function RootLayout({
           <ThemeSwitcher />
         </div> */}
         <Navigation />
-        <div className="min-h-screen">{children}</div>
+        <div className="min-w-350 min-h-screen">{children}</div>
         <Footer />
       </body>
     </html>

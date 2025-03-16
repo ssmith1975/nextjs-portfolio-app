@@ -2,11 +2,11 @@
 title: 'Graphic Design'
 excerpt: 'Artistic creations and designs.'
 coverImage: '/assets/images/skills.jpg'
-iconImage: '/assets/icons/skill-graphic-design.png'
+iconImage: '/assets/icons/skill-graphic-designs.png'
 anchorLink: 'graphic-design'
 order: 2
 ogImage:
-  url: '/assets/icons/skill-graphic-design'
+  url: '/assets/icons/skill-graphic-designs'
 ---
 
 Artistic creations that include the following:
@@ -21,4 +21,3 @@ Artistic creations that include the following:
 - T-Shirt Designs
 - CD Covers and Label
 - Posters
-

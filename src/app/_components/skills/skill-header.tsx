@@ -39,7 +39,7 @@ export function SkillHeader({ title, coverImage, iconImage, slug }: Props) {
   return (
     <>
       <SkillTitle>{title}</SkillTitle>
-      <div className="mb-8 sm:mx-0 md:mb-16">{skillCover}</div>
+      <div className="mb-5 rounded-lg sm:mx-0 md:mb-5">{skillCover}</div>
     </>
   );
 }
