@@ -1,30 +1,55 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { CMS_NAME } from '@/lib/constants';
 import Container from '@/app/_components/container';
 import Header from '../../_components/header';
-import { getAllSkills, getSkillBySlug } from '@/lib/api';
-import { Skill } from '@/interfaces/skills/skill';
-import markdownToHtml from '@/lib/markdownToHtml';
 import { SkillBody } from '@/app/_components/skills/skill-body';
-import { SkillHeader } from '@/app/_components/skills/skill-header';
+import {
+  fetchSkillCategoriesBySkillsetId,
+  fetchSkillsetsBySlug,
+} from '@/lib/data';
+import { WP_Skill_Category } from '@/lib/definitions';
+import { SkillTitle } from '@/app/_components/skills/skill-title';
+import { CMS_NAME } from '@/lib/constants';
+
+const metaTitle = `Skill Category | ${CMS_NAME}`;
+export const metadata: Metadata = {
+  title: {
+    template: metaTitle,
+    default: 'Skills',
+  },
+};
+
+type Params = {
+  params: {
+    slug: string;
+  };
+};
 
 export default async function SkillItem({ params }: Params) {
-  // const skill = getSkillBySlug(params.slug);
+  const skillset = await fetchSkillsetsBySlug(params.slug);
 
-  // if (!skill) {
-  //   return notFound();
-  // }
+  if (!skillset) {
+    return notFound();
+  }
 
-  //const content = await markdownToHtml(skill.content || '');
-
+  const skill_categories =
+    (skillset && (await fetchSkillCategoriesBySkillsetId(skillset.id))) || [];
   return (
     <main>
       <Container>
         <Header />
         <article className="mb-32">
-          <p>Hello World!</p>
-          {params.slug}
+          <SkillTitle>{skillset?.name}</SkillTitle>
+          <SkillBody content={skillset?.description || ''}></SkillBody>
+
+          {skill_categories.map((category: WP_Skill_Category) => (
+            <div className="mb-5">
+              <h2 className="text-3xl" key={category.id}>
+                {category.name}
+              </h2>
+              <p>{category.slug}</p>
+            </div>
+          ))}
           {/* <SkillHeader
             title={skill.title}
             coverImage={skill.coverImage}
@@ -36,35 +61,3 @@ export default async function SkillItem({ params }: Params) {
     </main>
   );
 }
-
-type Params = {
-  params: {
-    slug: string;
-  };
-};
-
-// export function generateMetadata({ params }: Params): Metadata {
-//   const skill = getSkillBySlug(params.slug);
-
-//   if (!skill) {
-//     return notFound();
-//   }
-
-//   const title = `${skill.title} | Next.js Blog Example with ${CMS_NAME}`;
-
-//   return {
-//     title,
-//     openGraph: {
-//       title,
-//       images: [skill.ogImage.url],
-//     },
-//   };
-// }
-
-// export async function generateStaticParams() {
-//   const skills = getAllSkills();
-
-//   return skills.map((skill: Skill) => ({
-//     slug: skill.slug,
-//   }));
-// }

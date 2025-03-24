@@ -13,7 +13,7 @@ import { WP_Skillset } from '@/lib/definitions';
 import { MoreFullSkillset } from '../_components/skills/skill-skilltset';
 
 const slug = 'overview';
-const metaTitle = `Skills | Next.js Blog Example with ${CMS_NAME}`;
+const metaTitle = `Skills | ${CMS_NAME}`;
 const metaImage = '/assets/icons/skill-software-dev.png';
 
 export const metadata: Metadata = {
