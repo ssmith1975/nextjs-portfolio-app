@@ -1,0 +1,76 @@
+'use client';
+import { Technologies_By_Skillset_Data } from '@/lib/definitions';
+import { useState } from 'react';
+import { maxReadMoreListSize } from '@/lib/constants';
+
+type Props = {
+  technologyList: Array<Technologies_By_Skillset_Data>;
+};
+
+function printLevel(level: number) {
+  const icon: string = '★';
+
+  const result: string = new Array(5)
+    .fill('★', 0, level)
+    .fill('☆', level, 5)
+    .join('');
+  return result;
+}
+function printEstimate(years: number, estimate: string) {
+  switch (estimate) {
+    case 'more than':
+      return `${years}+`;
+    case 'less than':
+      return `< ${years}`;
+    case 'about':
+      return `about ${years}`;
+    default:
+      return `${years}`;
+  }
+}
+
+export function ShowTechnologies({ technologyList }: Props) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  if (technologyList.length == 0) {
+    return <p>No data</p>;
+  }
+
+  const truncatedList =
+    technologyList.length > maxReadMoreListSize && !isExpanded
+      ? technologyList.slice(0, maxReadMoreListSize) //+ '...'
+      : technologyList;
+
+  const remainingCount = technologyList.length - maxReadMoreListSize;
+  return (
+    <div className="mb-5">
+      {truncatedList.map((t: Technologies_By_Skillset_Data) => (
+        <div key={t.technologyid} className="col-span-10 pb-2">
+          <div className="">
+            <b>{t.technologyname}</b>
+          </div>
+          <div className="text-color text-sm text-neutral-600">
+            experience: {printEstimate(t.years, t.estimate)} years
+          </div>
+          <div className="text-color wrap-normal text-sm text-neutral-600">
+            confidence: {printLevel(t.level)}
+          </div>
+        </div>
+      ))}
+      {technologyList.length > maxReadMoreListSize && (
+        <button
+          className="mt-3 bg-orange-500 p-2 text-sm font-bold text-white hover:bg-orange-600"
+          onClick={toggleExpand}
+        >
+          {isExpanded
+            ? 'Read Less Skills'
+            : `Read More Skills (+${remainingCount})`}
+        </button>
+      )}
+    </div>
+  );
+}

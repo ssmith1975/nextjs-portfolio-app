@@ -10,3 +10,4 @@ export const avatarWidth = 72;
 export const avatarHeight = 72;
 export const avatarImageDims = { width: 72, height: 72 };
 export const iconImageDims = { width: 92, height: 92 };
+export const maxReadMoreListSize = 5;
