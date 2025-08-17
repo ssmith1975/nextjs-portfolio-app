@@ -57,7 +57,8 @@ export function ShowTechnologies({ technologyList }: Props) {
             experience: {printEstimate(t.years, t.estimate)} years
           </div>
           <div className="text-color wrap-normal text-sm text-neutral-600">
-            confidence: {printLevel(t.level)}
+            confidence:{' '}
+            <span className="text-orange-500">{printLevel(t.level)}</span>
           </div>
         </div>
       ))}
