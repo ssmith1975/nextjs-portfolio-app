@@ -1,9 +1,12 @@
 import { fetchTechnologiesBySkillsetSlug, findSkillsetBySlug } from './data';
+import { fetchPastProjects } from '@/lib/dummydata/pastprojects';
+
 import {
   Categories_With_Technologies,
   Technologies_By_Skillset_Data,
   Categories_With_Technologies_Data,
   Skillset_Single,
+  Project_Data,
 } from './definitions';
 
 // Skillsets
@@ -48,4 +51,9 @@ export async function categoriesWithTechnologiesService(skillsetid: number) {
   // console.log(JSON.stringify(result, null, 4));
 
   return categories;
+}
+
+// Projects
+export function getProjectsService() {
+  return fetchPastProjects() as Array<Project_Data>;
 }

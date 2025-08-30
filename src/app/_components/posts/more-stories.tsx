@@ -1,6 +1,6 @@
 import { Post } from '@/interfaces/_posts/post';
-import { PostPreview } from './posts/post-preview';
-import BigButton from './big-button';
+import { PostPreview } from './post-preview';
+import BigButton from '../common/big-button';
 
 type Props = {
   posts: Post[];

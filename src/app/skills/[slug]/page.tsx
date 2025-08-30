@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Container from '@/app/_components/container';
-import Header from '../../_components/header';
+import Container from '@/app/_components/common/container';
+import Header from '../../_components/common/header';
 import { SkillBody } from '@/app/_components/skills/skill-body';
 import {
   Categories_With_Technologies,

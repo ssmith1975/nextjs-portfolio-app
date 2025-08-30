@@ -1,10 +1,10 @@
-import Footer from '@/app/_components/footer';
+import Footer from '@/app/_components/common/footer';
 import { CMS_NAME, HOME_OG_IMAGE_URL } from '@/lib/constants';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import cn from 'classnames';
 //import { ThemeSwitcher } from './_components/theme-switcher';
-import { Navigation } from './_components/nav';
+import { Navigation } from './_components/common/nav';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });

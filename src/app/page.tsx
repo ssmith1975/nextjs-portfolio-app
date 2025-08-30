@@ -1,24 +1,17 @@
-import Container from '@/app/_components/container';
-import { HeroPost } from '@/app/_components/hero-post';
-import { Intro } from '@/app/_components/intro';
-import { MoreStories } from '@/app/_components/more-stories';
-import { getAllPosts, getAllSkills } from '@/lib/api';
+import Container from '@/app/_components/common/container';
+import { HeroPost } from '@/app/_components/home/hero-post';
+import { Intro } from '@/app/_components/home/intro';
+import { getAllPosts } from '@/lib/api';
 
-import { Clientsntro } from './_components/clients-intro';
-import { MoreSkillsets, IntroSkillsets } from './_components/more-skills';
+import { Clientsntro } from './_components/clients/clients-intro';
 
-import { SkillBody } from './_components/skills/skill-body';
-import BigButton from './_components/big-button';
 import { SectionSeparator } from './_components/section-separator';
+import { SkillsIntro } from './_components/skills/skills-intro';
+import { ProjectsIntro } from './_components/projects/projects-intro';
 
 export default function Index() {
   const allPosts = getAllPosts();
-  const allSkills = getAllSkills();
-
   const heroPost = allPosts[0];
-
-  const morePosts = allPosts.slice(1);
-  const [introSkill, _] = allSkills; //allSkills.slice(1);
 
   return (
     <main>
@@ -32,22 +25,13 @@ export default function Index() {
           slug={heroPost.slug}
           excerpt={heroPost.excerpt}
         />
-        <article className="md:mb-10">
-          <h2 className="mb-5 text-5xl font-bold leading-tight tracking-tighter md:text-7xl">
-            Skills
-          </h2>
-          <SkillBody content={introSkill.content} />
-          <IntroSkillsets />
 
-          <BigButton link="/skills">Full list of skill</BigButton>
+        <article className="md:mb-10">
+          <ProjectsIntro />
         </article>
         <SectionSeparator />
         <article className="md:mb-10">
-          <h2 className="mb-5 text-5xl font-bold leading-tight tracking-tighter md:text-7xl">
-            Past Projects
-          </h2>
-
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          <SkillsIntro />
         </article>
         <SectionSeparator />
         <article className="md:mb-10">

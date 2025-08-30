@@ -1,8 +1,8 @@
 import { type Author } from '@/interfaces/author';
 import Link from 'next/link';
-import Avatar from '@/app/_components/avatar';
-import CoverImage from '@/app/_components/cover-image';
-import DateFormatter from '@/app/_components/date-formatter';
+import Avatar from '@/app/_components/common/avatar';
+import CoverImage from '@/app/_components/common/cover-image';
+import DateFormatter from '@/app/_components/common/date-formatter';
 import { avatarImageDims, coverImageDims } from '@/lib/constants';
 //import markdownStyles from '@/app/_components/markdown-styles.module.css';
 type Props = {

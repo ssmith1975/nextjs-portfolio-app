@@ -1,14 +1,14 @@
 import { type Author } from '@/interfaces/author';
 import Link from 'next/link';
 //import Avatar from '@/app/_components/avatar';
-import CoverImage from '@/app/_components/cover-image';
+import CoverImage from '@/app/_components/common/cover-image';
 //import DateFormatter from '@/app/_components/date-formatter';
 import {
   avatarImageDims,
   coverImageDims,
   iconImageDims,
 } from '@/lib/constants';
-import Icon from '../icon';
+import Icon from '../common/icon';
 //import markdownStyles from '@/app/_components/markdown-styles.module.css';
 type Props = {
   title: string;

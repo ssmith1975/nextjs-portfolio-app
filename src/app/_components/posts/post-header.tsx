@@ -1,6 +1,6 @@
-import Avatar from '@/app/_components/avatar';
-import CoverImage from '@/app/_components/cover-image';
-import DateFormatter from '@/app/_components/date-formatter';
+import Avatar from '@/app/_components/common/avatar';
+import CoverImage from '@/app/_components/common/cover-image';
+import DateFormatter from '@/app/_components/common/date-formatter';
 import { PostTitle } from '@/app/_components/posts/post-title';
 import { type Author } from '@/interfaces/author';
 import { avatarImageDims, coverImageDims } from '@/lib/constants';

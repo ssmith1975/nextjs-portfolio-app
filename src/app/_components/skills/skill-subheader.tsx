@@ -1,10 +1,10 @@
 //import Avatar from '@/app/_components/avatar';
-import CoverImage from '@/app/_components/cover-image';
+import CoverImage from '@/app/_components/common/cover-image';
 //import DateFormatter from '@/app/_components/date-formatter';
 import { SkillTitle } from '@/app/_components/skills/skill-title';
 //import { type Author } from '@/interfaces/author';
 import { iconImageDims, coverImageDims } from '@/lib/constants';
-import Icon from '../icon';
+import Icon from '../common/icon';
 import React from 'react';
 import Link from 'next/link';
 

@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import Breadcrumbs from '@/app/_components/breadcrumbs';
+import Breadcrumbs from '@/app/_components/common/breadcrumbs';
 const Header = () => {
   return (
     <div className="mb-10 mt-32">

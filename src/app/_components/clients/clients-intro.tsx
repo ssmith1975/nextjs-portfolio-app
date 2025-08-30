@@ -1,4 +1,4 @@
-import BigButton from './big-button';
+import BigButton from '../common/big-button';
 
 export function Clientsntro() {
   return (

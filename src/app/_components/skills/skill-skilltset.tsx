@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { iconImageDims } from '@/lib/constants';
-import Icon from '../icon';
+import Icon from '../common/icon';
 import Link from 'next/link';
 import { WP_Skillset } from '@/lib/definitions';
 import { createMedia } from '@artsy/fresnel';

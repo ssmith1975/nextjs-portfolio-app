@@ -59,6 +59,26 @@ export type Technologies_By_Skillset_Data = {
 export type Categories_With_Technologies_Data = Categories_By_Skillset_Data &
   Technologies_By_Skillset_Data;
 
+//  --- Past Projects
+export type Client_Data = {
+  name: string;
+  url: string;
+  location: string;
+};
+
+export type Project_Data = {
+  id: number;
+  title: string;
+  coverImage: string;
+  descripton: string;
+  startDate: Date;
+  endDate: Date;
+
+  skills: Array<string>;
+  screenshots: Array<string>;
+  client: Client_Data;
+};
+
 // View Model Types
 
 export type Skillset_Single = Skillset_Single_Data;

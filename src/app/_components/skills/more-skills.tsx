@@ -1,7 +1,7 @@
 'use server';
 import React from 'react';
 
-import { ShowMoreSkillsets } from './skills/skill-skilltset';
+import { ShowMoreSkillsets } from './skill-skilltset';
 import { fetchSkillsets, fetchFeaturedSkillsets } from '@/lib/data';
 import { WP_Skillset } from '@/lib/definitions';
 
