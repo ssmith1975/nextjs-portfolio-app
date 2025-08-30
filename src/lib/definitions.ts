@@ -28,7 +28,8 @@ export type WP_Technologies = {
   note: string;
 };
 
-// Types according to Skillset Slug
+// View Models
+//    --- Skills
 
 export type Skillset_Single_Data = Omit<
   WP_Skillset,
@@ -59,6 +60,12 @@ export type Technologies_By_Skillset_Data = {
 export type Categories_With_Technologies_Data = Categories_By_Skillset_Data &
   Technologies_By_Skillset_Data;
 
+export type Skillset_Single = Skillset_Single_Data;
+
+export type Categories_With_Technologies = Categories_By_Skillset_Data & {
+  technologies: Array<Technologies_By_Skillset_Data>;
+};
+
 //  --- Past Projects
 export type Client_Data = {
   name: string;
@@ -70,19 +77,26 @@ export type Project_Data = {
   id: number;
   title: string;
   coverImage: string;
-  descripton: string;
+  description: string;
   startDate: Date;
   endDate: Date;
 
   skills: Array<string>;
   screenshots: Array<string>;
   client: Client_Data;
+  slug: string;
+  isFeature: boolean;
+  isActive: boolean;
 };
 
-// View Model Types
-
-export type Skillset_Single = Skillset_Single_Data;
-
-export type Categories_With_Technologies = Categories_By_Skillset_Data & {
-  technologies: Array<Technologies_By_Skillset_Data>;
-};
+export type ProjectPreviewViewModel = Pick<
+  Project_Data,
+  | 'id'
+  | 'title'
+  | 'coverImage'
+  | 'description'
+  | 'startDate'
+  | 'endDate'
+  | 'client'
+  | 'slug'
+>;

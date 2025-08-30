@@ -7,6 +7,7 @@ import {
   Categories_With_Technologies_Data,
   Skillset_Single,
   Project_Data,
+  ProjectPreviewViewModel,
 } from './definitions';
 
 // Skillsets
@@ -55,5 +56,41 @@ export async function categoriesWithTechnologiesService(skillsetid: number) {
 
 // Projects
 export function getProjectsService() {
-  return fetchPastProjects() as Array<Project_Data>;
+  return fetchPastProjects().filter((p) => p.isActive) as Array<Project_Data>;
+}
+
+export function getProjectPreviews() {
+  const pastProjects: Project_Data[] = getProjectsService().filter(
+    (p) => p.isFeature,
+  );
+
+  const projectPreviews: ProjectPreviewViewModel[] = pastProjects.map(
+    (project: Project_Data) => {
+      const {
+        id,
+        title,
+        coverImage,
+        description,
+        startDate,
+        endDate,
+        slug,
+        client,
+      } = project;
+
+      return {
+        id,
+        title,
+        coverImage,
+        description,
+        startDate,
+        endDate,
+        slug,
+        client,
+      } as ProjectPreviewViewModel;
+    },
+  );
+
+  return projectPreviews.sort(
+    (a, b) => b.endDate.getTime() - a.endDate.getTime(),
+  );
 }
