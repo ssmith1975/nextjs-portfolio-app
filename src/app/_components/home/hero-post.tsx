@@ -8,7 +8,7 @@ import { avatarImageDims, coverImageDims } from '@/lib/constants';
 type Props = {
   title: string;
   coverImage: string;
-  date: string;
+  date: Date;
   excerpt: string;
   author: Author;
   slug: string;
@@ -41,7 +41,7 @@ export function HeroPost({
             </Link>
           </h3>
           <div className="mb-4 text-lg md:mb-0">
-            <DateFormatter dateString={date} />
+            <DateFormatter date={date} />
           </div>
         </div>
         <div>

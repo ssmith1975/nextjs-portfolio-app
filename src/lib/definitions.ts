@@ -68,23 +68,27 @@ export type Categories_With_Technologies = Categories_By_Skillset_Data & {
 
 //  --- Past Projects
 export type Client_Data = {
+  id: number;
   name: string;
   url: string;
   location: string;
+  logo: string;
 };
 
 export type Project_Data = {
   id: number;
   title: string;
   coverImage: string;
+  projectType: string;
   description: string;
   startDate: Date;
   endDate: Date;
-
   skills: Array<string>;
   screenshots: Array<string>;
   client: Client_Data;
   slug: string;
+  thumbnail: string;
+  url?: string | null;
   isFeature: boolean;
   isActive: boolean;
 };
@@ -93,10 +97,11 @@ export type ProjectPreviewViewModel = Pick<
   Project_Data,
   | 'id'
   | 'title'
-  | 'coverImage'
+  | 'projectType'
   | 'description'
   | 'startDate'
   | 'endDate'
   | 'client'
   | 'slug'
+  | 'thumbnail'
 >;

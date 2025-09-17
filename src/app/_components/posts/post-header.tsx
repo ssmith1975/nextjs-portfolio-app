@@ -8,7 +8,7 @@ import { avatarImageDims, coverImageDims } from '@/lib/constants';
 type Props = {
   title: string;
   coverImage: string;
-  date: string;
+  date: Date;
   author: Author;
 };
 
@@ -42,7 +42,7 @@ export function PostHeader({ title, coverImage, date, author }: Props) {
           />
         </div>
         <div className="mb-6 text-lg">
-          <DateFormatter dateString={date} />
+          <DateFormatter date={new Date(date)} />
         </div>
       </div>
     </>

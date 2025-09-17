@@ -1,5 +1,8 @@
-import { fetchTechnologiesBySkillsetSlug, findSkillsetBySlug } from './data';
-import { fetchPastProjects } from '@/lib/dummydata/pastprojects';
+import {
+  fetchProjects,
+  fetchTechnologiesBySkillsetSlug,
+  findSkillsetBySlug,
+} from './data';
 
 import {
   Categories_With_Technologies,
@@ -47,33 +50,48 @@ export async function categoriesWithTechnologiesService(skillsetid: number) {
       };
     });
 
-  //const result = categories;
-  // console.log('result');
-  // console.log(JSON.stringify(result, null, 4));
-
   return categories;
 }
 
 // Projects
-export function getProjectsService() {
-  return fetchPastProjects().filter((p) => p.isActive) as Array<Project_Data>;
+export async function getProjectsService() {
+  try {
+    const result = await fetchProjects(true);
+    console.log('fetch the projects...');
+    return result;
+  } catch (err) {
+    console.log('error msg...');
+    console.log(err);
+    return [];
+  }
+
+  //return fetchPastProjects().filter((p) => p.isActive) as Array<Project_Data>;
 }
 
-export function getProjectPreviews() {
-  const pastProjects: Project_Data[] = getProjectsService().filter(
-    (p) => p.isFeature,
-  );
+export async function getProjectPreviews() {
+  let pastProjects: Array<Project_Data> = [];
 
-  const projectPreviews: ProjectPreviewViewModel[] = pastProjects.map(
+  try {
+    pastProjects = await fetchProjects(true);
+    console.log('fetch the projects...');
+  } catch (err) {
+    console.log('error msg...');
+    console.log(err);
+  }
+
+  const projectPreviews: Array<ProjectPreviewViewModel> = pastProjects.map(
     (project: Project_Data) => {
       const {
         id,
         title,
         coverImage,
+        projectType,
         description,
         startDate,
         endDate,
+        url,
         slug,
+        thumbnail,
         client,
       } = project;
 
@@ -81,16 +99,16 @@ export function getProjectPreviews() {
         id,
         title,
         coverImage,
+        projectType,
         description,
-        startDate,
-        endDate,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+        url,
         slug,
+        thumbnail: thumbnail || 'placeholder_2000x1000.png',
         client,
       } as ProjectPreviewViewModel;
     },
   );
-
-  return projectPreviews.sort(
-    (a, b) => b.endDate.getTime() - a.endDate.getTime(),
-  );
+  return projectPreviews;
 }

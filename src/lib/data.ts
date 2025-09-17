@@ -2,9 +2,9 @@ import { createPool } from '@vercel/postgres';
 
 import {
   Categories_With_Technologies_Data,
+  Project_Data,
   Skillset_Single_Data,
-  WP_Skillset,
-  //WP_Skillset_Single_Data,
+  WP_Skillset
 } from './definitions';
 
 const db_pool = createPool({
@@ -128,5 +128,57 @@ export async function fetchTechnologiesBySkillsetSlug(skillsetid: number) {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch fetchTechnologiesBySkillsetSlug data.');
+  }
+}
+
+// Projects
+
+export async function fetchProjects(isFeatured: boolean = false) {
+  try {
+    const data = await db_pool.sql<any>` 
+      SELECT jsonb_agg(jsonb_build_object(
+          'projectId', p.id
+          ,'title', p.name
+          , 'description', p.description
+          , 'projectType', p.projecttype
+          , 'slug', p.slug
+          , 'thumbnail', p.thumbnail
+          , 'startDate', pca.startdate
+          , 'endDate', pca.enddate
+          , 'contact', pca.contact
+          , 'jobType', pca.jobtype
+          , 'client', (
+              SELECT jsonb_build_object(
+                  'id', c2.id
+                  , 'name', c2.name
+                  , 'logo', c2.logo
+                  , 'url', c2.url
+                  , 'clientLocation', c2.location
+                ) FROM wp_clients c2
+              WHERE c2.id = pca.clientid
+          )
+          , 'skills', jsonb_build_array('a', 'b', 'c')
+          , 'screenshots', jsonb_build_array(
+              'placeholder_2000x1000.png'
+              , 'placeholder_2000x1000.png'
+              , 'placeholder_2000x1000.png'
+              )
+          ) ORDER BY pca.enddate DESC) as json_result
+          FROM wp_projects p
+              JOIN wp_project_clients_associative pca
+                  ON pca.projectid = p.id
+          WHERE 
+              p.isactive = true 
+              AND p.isfeature = ${isFeatured}
+      ;
+    `;
+    
+    console.log('Data fetch completed in fetchProjects.');
+   
+    const result: Array<Project_Data> = data?.rows[0]?.json_result || [];
+    return result;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch featured projects data.');
   }
 }
