@@ -9,7 +9,7 @@ export async function ProjectBody({ description }: Props) {
   const content = await markdownToHtml(description || '');
 
   return (
-    <div className={`mx-auto max-w-2xl ${markdownStyles['projectbody']}`}>
+    <div className={`mx-auto max-w-2xl px-2 ${markdownStyles['projectbody']}`}>
       <div
         className={`${markdownStyles['markdown']}`}
         dangerouslySetInnerHTML={{ __html: content }}

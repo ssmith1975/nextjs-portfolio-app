@@ -27,7 +27,7 @@ export function MoreProjects({ projects }: Props) {
         ))}
       </div>
 
-      <BigButton link="/#">Full list of past projects</BigButton>
+      <BigButton link="/projects">Full list of past projects</BigButton>
     </section>
   );
 }

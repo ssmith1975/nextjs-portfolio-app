@@ -17,15 +17,46 @@
   @apply mb-4 mt-8 text-2xl leading-snug;
 }
 
-.projectbody p {
+.projectbody div {
    @apply md:text-sm pl-6 mt-3;
 }
 
-.projectbody p:before {
+.projectbody div > p:before {
   content: '◉';
   margin-right: .75em;
   color: rgb(194 65 12 );
   display: block;
   @apply absolute left-0; 
 
+}
+
+.projectbody .markdown li  {
+
+  list-style-type:circle;
+  position:relative;
+  left:auto;
+ 
+
+}
+.projectbody .markdown ul  {
+  margin: 0;
+}
+.projectbody .markdown ul li  {
+    list-style-position: outside;
+    margin-left: 1.5em;
+}
+.projectbody .markdown ul li p {
+
+  color: rgb(194 65 12 );
+  display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 0,5rem;
+  padding: 0;
+  @apply static text-gray-600;
+}
+
+.projectbody .markdown ul li p:before {
+
+  margin-right: 0;
+  
 }

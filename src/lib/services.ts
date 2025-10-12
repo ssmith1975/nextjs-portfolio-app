@@ -54,9 +54,9 @@ export async function categoriesWithTechnologiesService(skillsetid: number) {
 }
 
 // Projects
-export async function getProjectsService() {
+export async function getProjectsService(isFeatured:boolean = true) {
   try {
-    const result = await fetchProjects(true);
+    const result = await fetchProjects(isFeatured);
     console.log('fetch the projects...');
     return result;
   } catch (err) {
@@ -68,11 +68,11 @@ export async function getProjectsService() {
   //return fetchPastProjects().filter((p) => p.isActive) as Array<Project_Data>;
 }
 
-export async function getProjectPreviews() {
+export async function getProjectPreviews(isFeatured:boolean = true) {
   let pastProjects: Array<Project_Data> = [];
 
   try {
-    pastProjects = await fetchProjects(true);
+    pastProjects = await fetchProjects(isFeatured);
     console.log('fetch the projects...');
   } catch (err) {
     console.log('error msg...');

@@ -30,21 +30,38 @@ export async function ProjectPreview({
 
   return (
     <div
-      className="flex h-full flex-col content-between items-stretch 
-      gap-y-5 rounded-lg bg-gray-100 p-5 shadow-sm"
+      className="flex h-full flex-col 
+      gap-y-3 rounded-lg bg-stone-100 px-5 py-10 shadow-sm items-stretch"
     >
-      <h3 className="text-md text-2xl">
+      <h3 className="text-md text-2xl line-clamp-1">
         <Link
           href={`/#${slug}`}
           className="text-gray-700 underline hover:text-orange-600"
+          title={title}
         >
           {title}
         </Link>
       </h3>
+      <h5 className="text-lg font-bold mt-5 text-orange-700">Client:</h5>
+      {client && <p className="h-10 text-lg italic" title={name}>{name}</p>}
 
-      {client && <h4 className="">Client: {name}</h4>}
-
-      <div className="mt-auto flex items-stretch justify-between">
+      <div className="bg-white">
+        <CoverImage
+          slug={slug}
+          title={title}
+          src={`/assets/images/${thumbnail}`}
+          width={coverImageDims.width}
+          height={coverImageDims.height}
+        />
+      </div>
+      <h5 className="text-lg font-bold mt-5 text-orange-700">Description:</h5>
+      <div
+        className="md:scrollbar w-full text-sm 
+        text-sm leading-relaxed md:max-h-72 md:overflow-y-auto mb-5"
+      >
+        <ProjectBody description={description} />
+      </div>
+        <div className="flex items-stretch justify-between mb-5 mt-auto">
         <p>
           <strong className="text-orange-700">Start Date: </strong>
           <br />
@@ -55,23 +72,7 @@ export async function ProjectPreview({
           <br />
           <DateFormatter date={endDate} />
         </p>
-      </div>
-      <div className="bg-white">
-        <CoverImage
-          slug={slug}
-          title={title}
-          src={`/assets/images/${thumbnail}`}
-          width={coverImageDims.width}
-          height={coverImageDims.height}
-        />
-      </div>
-      <h5 className="text-lg font-bold">Description:</h5>
-      <div
-        className="md:scrollbar w-full bg-gray-200 p-3 text-sm 
-        text-sm leading-relaxed md:h-64 md:overflow-y-auto"
-      >
-        <ProjectBody description={description} />
-      </div>
+      </div>    
       <div className="box-border w-full">
         <p className="box-border p-3 text-right text-xs">
           Project Type:{' '}
