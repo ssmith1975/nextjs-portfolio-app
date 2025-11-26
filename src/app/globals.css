@@ -4,6 +4,8 @@
 
 @plugin 'tailwind-scrollbar';
 
+@custom-variant light (&:is(.light *));
+
 html {
   font-family:
     'Inter Tight',
@@ -52,7 +54,7 @@ li > ul ul {
   list-style-position: inside;
   margin-top: 0;
   margin-left: 2rem;
-} 
+}
 
 li {
   margin-top: 0.5rem;

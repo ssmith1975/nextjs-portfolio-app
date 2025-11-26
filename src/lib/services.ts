@@ -1,3 +1,5 @@
+import markdownToHtml from '@/lib/markdownToHtml';
+
 import {
   fetchProjects,
   fetchTechnologiesBySkillsetSlug,
@@ -68,7 +70,7 @@ export async function getProjectsService(isFeatured:boolean = true) {
   //return fetchPastProjects().filter((p) => p.isActive) as Array<Project_Data>;
 }
 
-export async function getProjectPreviews(isFeatured:boolean = true) {
+export async function getProjectPreviews(isFeatured:boolean = true){
   let pastProjects: Array<Project_Data> = [];
 
   try {
@@ -79,8 +81,8 @@ export async function getProjectPreviews(isFeatured:boolean = true) {
     console.log(err);
   }
 
-  const projectPreviews: Array<ProjectPreviewViewModel> = pastProjects.map(
-    (project: Project_Data) => {
+  const projectPreviews = pastProjects.map(
+     async (project: Project_Data)=> {
       const {
         id,
         title,
@@ -95,12 +97,15 @@ export async function getProjectPreviews(isFeatured:boolean = true) {
         client,
       } = project;
 
+        const tmpDescription = description.replaceAll('<br />', '\n');
+        const processedDescription = await markdownToHtml(tmpDescription || '');
+
       return {
         id,
         title,
         coverImage,
         projectType,
-        description,
+        description: processedDescription,
         startDate: new Date(startDate),
         endDate: new Date(endDate),
         url,
@@ -110,5 +115,5 @@ export async function getProjectPreviews(isFeatured:boolean = true) {
       } as ProjectPreviewViewModel;
     },
   );
-  return projectPreviews;
+  return Promise.all(projectPreviews);
 }

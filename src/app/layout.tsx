@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google';
 import cn from 'classnames';
 //import { ThemeSwitcher } from './_components/theme-switcher';
 import { Navigation } from './_components/common/nav';
-import './globals.css';
+import '@/app/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="light">
       <head>
         <link
           rel="apple-touch-icon"

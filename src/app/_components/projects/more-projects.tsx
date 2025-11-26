@@ -1,6 +1,6 @@
-import { ProjectPreview } from './project-preview';
 import BigButton from '../common/big-button';
 import { ProjectPreviewViewModel } from '@/lib/definitions';
+import ProjectCard from './project-card';
 
 type Props = {
   projects: ProjectPreviewViewModel[];
@@ -9,11 +9,13 @@ type Props = {
 export function MoreProjects({ projects }: Props) {
   return (
     <section>
-      <div className="mb-16 grid grid-cols-1  gap-y-10 md:grid-cols-2 
-        md:gap-x-12 md:gap-y-16 lg:gap-x-16 content-stretch">
+      <div
+        className="mb-16 grid grid-cols-1  content-stretch gap-y-10 
+        md:grid-cols-2 md:gap-x-12 md:gap-y-16 lg:gap-x-16"
+      >
         {projects.map((project) => (
           <article key={project.slug}>
-            <ProjectPreview
+            <ProjectCard
               title={project.title}
               startDate={project.startDate}
               endDate={project.endDate}
