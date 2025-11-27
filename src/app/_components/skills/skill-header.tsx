@@ -30,9 +30,11 @@ export function SkillHeader({ title, coverImage, iconImage, slug }: Props) {
     <CoverImage
       title={title}
       src={coverImage}
+      path="/skills"
       slug={slug}
       width={coverImageDims.width}
       height={coverImageDims.height}
+      addedClasses="rounded-lg shadow-sm"
     />
   );
 

@@ -31,6 +31,7 @@ export function HeroPost({
           slug={slug}
           width={coverImageDims.width}
           height={coverImageDims.height}
+          addedClasses="rounded-lg shadow-sm"
         />
       </div>
       <div className="mb-20 md:mb-28 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">

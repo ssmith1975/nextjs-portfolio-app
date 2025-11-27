@@ -31,6 +31,7 @@ export function PostPreview({
           src={coverImage}
           width={coverImageDims.width}
           height={coverImageDims.height}
+          path="/posts"
         />
       </div>
       <h3 className="mb-3 text-3xl leading-snug">

@@ -56,6 +56,7 @@ export function ProjectPreview({
           src={`/assets/images/${thumbnail}`}
           width={coverImageDims.width}
           height={coverImageDims.height}
+          path="/projects"
         />
       </div>
 
