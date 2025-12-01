@@ -4,7 +4,7 @@ import {
   Categories_With_Technologies_Data,
   Project_Data,
   Skillset_Single_Data,
-  WP_Skillset
+  WP_Skillset,
 } from './definitions';
 
 const db_pool = createPool({
@@ -133,12 +133,13 @@ export async function fetchTechnologiesBySkillsetSlug(skillsetid: number) {
 
 // Projects
 
-export async function fetchProjects(isFeatured: boolean = false) {
+export async function fetchProjects() {
   try {
     const data = await db_pool.sql<any>` 
       SELECT jsonb_agg(jsonb_build_object(
           'projectId', p.id
           ,'title', p.name
+          ,'isFeature', p.isfeature
           , 'description', p.description
           , 'projectType', p.projecttype
           , 'slug', p.slug
@@ -169,12 +170,11 @@ export async function fetchProjects(isFeatured: boolean = false) {
                   ON pca.projectid = p.id
           WHERE 
               p.isactive = true 
-              AND p.isfeature = ${isFeatured}
       ;
     `;
-    
+
     console.log('Data fetch completed in fetchProjects.');
-   
+
     const result: Array<Project_Data> = data?.rows[0]?.json_result || [];
     return result;
   } catch (error) {

@@ -12,7 +12,7 @@ import { fetchSkillsets } from '@/lib/data';
 
 import { ProjectPreviewViewModel } from '@/lib/definitions';
 
-import { getProjectPreviews } from '@/lib/services';
+import { getProjectPreviews, getProjectsService } from '@/lib/services';
 import { MoreProjects } from '@/app/_components/projects/more-projects';
 
 //const slug = 'overview';
@@ -36,7 +36,7 @@ export default async function Projects() {
 
   //const content = await markdownToHtml(skill.content || '');
 
-  const projects: Array<ProjectPreviewViewModel> = await getProjectPreviews(false);
+  const projects: Array<ProjectPreviewViewModel> = await getProjectPreviews();
 
   return (
     <main>

@@ -56,9 +56,9 @@ export async function categoriesWithTechnologiesService(skillsetid: number) {
 }
 
 // Projects
-export async function getProjectsService(isFeatured:boolean = true) {
+export async function getProjectsService() {
   try {
-    const result = await fetchProjects(isFeatured);
+    const result = await fetchProjects();
     console.log('fetch the projects...');
     return result;
   } catch (err) {
@@ -70,50 +70,57 @@ export async function getProjectsService(isFeatured:boolean = true) {
   //return fetchPastProjects().filter((p) => p.isActive) as Array<Project_Data>;
 }
 
-export async function getProjectPreviews(isFeatured:boolean = true){
+export async function getProjectPreviews(isFeatured: boolean = false) {
   let pastProjects: Array<Project_Data> = [];
 
   try {
-    pastProjects = await fetchProjects(isFeatured);
-    console.log('fetch the projects...');
+    let fetchedData: Array<Project_Data> = await fetchProjects();
+    //console.log('fetched projects...', fetchedData);
+
+    if (!!isFeatured) {
+      pastProjects = fetchedData.filter((p: Project_Data) => p.isFeature);
+    } else {
+      pastProjects = fetchedData;
+    }
+
+    //pastProjects = fetchedData.filter((p) => p.isFeature == true);
+    //console.log('fetch the projects...', pastProjects);
   } catch (err) {
     console.log('error msg...');
     console.log(err);
   }
 
-  const projectPreviews = pastProjects.map(
-     async (project: Project_Data)=> {
-      const {
-        id,
-        title,
-        coverImage,
-        projectType,
-        description,
-        startDate,
-        endDate,
-        url,
-        slug,
-        thumbnail,
-        client,
-      } = project;
+  const projectPreviews = pastProjects.map(async (project: Project_Data) => {
+    const {
+      id,
+      title,
+      coverImage,
+      projectType,
+      description,
+      startDate,
+      endDate,
+      url,
+      slug,
+      thumbnail,
+      client,
+    } = project;
 
-        const tmpDescription = description.replaceAll('<br />', '\n');
-        const processedDescription = await markdownToHtml(tmpDescription || '');
+    const tmpDescription = description.replaceAll('<br />', '\n');
+    const processedDescription = await markdownToHtml(tmpDescription || '');
 
-      return {
-        id,
-        title,
-        coverImage,
-        projectType,
-        description: processedDescription,
-        startDate: new Date(startDate),
-        endDate: new Date(endDate),
-        url,
-        slug,
-        thumbnail: thumbnail || 'placeholder_2000x1000.png',
-        client,
-      } as ProjectPreviewViewModel;
-    },
-  );
+    return {
+      id,
+      title,
+      coverImage,
+      projectType,
+      description: processedDescription,
+      startDate: new Date(startDate),
+      endDate: new Date(endDate),
+      url,
+      slug,
+      thumbnail: thumbnail || 'placeholder_2000x1000.png',
+      client,
+    } as ProjectPreviewViewModel;
+  });
   return Promise.all(projectPreviews);
 }
