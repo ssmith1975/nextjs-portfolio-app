@@ -47,10 +47,10 @@ export function ShowTechnologies({ technologyList }: Props) {
 
   const remainingCount = technologyList.length - maxReadMoreListSize;
   return (
-    <div className="mb-5">
+    <div className="mb-5 grid grid-cols-1 gap-4 rounded-lg p-4 sm:grid-cols-2 md:grid-cols-3">
       {truncatedList.map((t: Technologies_By_Skillset_Data) => (
-        <div key={t.technologyid} className="col-span-10 pb-2">
-          <div className="">
+        <div key={t.technologyid} className="min-w-[220px] rounded-lg bg-gray-100 p-3">
+          <div className="break-words">
             <b>{t.technologyname}</b>
           </div>
           <div className="text-color text-sm text-neutral-600">
@@ -64,7 +64,7 @@ export function ShowTechnologies({ technologyList }: Props) {
       ))}
       {technologyList.length > maxReadMoreListSize && (
         <button
-          className="mt-3 bg-orange-500 p-2 text-sm font-bold text-white hover:bg-orange-600"
+          className="col-span-1 mt-3 max-w-xs bg-orange-500 p-2 text-sm font-bold text-white hover:bg-orange-600 sm:col-span-2 md:col-span-3"
           onClick={toggleExpand}
         >
           {isExpanded

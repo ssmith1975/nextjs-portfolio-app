@@ -14,9 +14,9 @@ export function Categories({ categories }: Props) {
   return (
     <div className="w-full">
       {categories?.map((cat: any) => (
-        <div className="mb-5 " key={cat.categoryid}>
+        <div className="mb-5" key={cat.categoryid}>
           <h2 className="mb-5 text-3xl">{cat.categoryname}</h2>
-          <div className="grid auto-cols-max grid-flow-row grid-cols-2 gap-4">
+          <div className="p-4 my-2 gap-2 w-full">
             <ShowTechnologies technologyList={cat.technologies} />
           </div>
         </div>
