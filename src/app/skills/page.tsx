@@ -3,14 +3,12 @@ import { notFound } from 'next/navigation';
 import { CMS_NAME } from '@/lib/constants';
 import Container from '@/app/_components/common/container';
 import Header from '../_components/common/header';
-import { getAllSkills, getSkillBySlug } from '@/lib/api';
+import {  getSkillBySlug } from '@/lib/api';
 import markdownToHtml from '@/lib/markdownToHtml';
 import { SkillBody } from '@/app/_components/skills/skill-body';
 import { SkillHeader } from '@/app/_components/skills/skill-header';
 import { MoreSkillsets } from '@/app/_components/skills/more-skills';
-import { fetchSkillsets } from '@/lib/data';
-import { WP_Skillset } from '@/lib/definitions';
-import { MoreFullSkillset } from '../_components/skills/skill-skilltset';
+
 
 const slug = 'overview';
 const metaTitle = `Skills | ${CMS_NAME}`;
@@ -33,9 +31,6 @@ export default async function Skills() {
 
   const content = await markdownToHtml(skill.content || '');
 
-  const allSkills = getAllSkills();
-
-  const skillsets: WP_Skillset[] = await fetchSkillsets();
   return (
     <main>
       <Container>

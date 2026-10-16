@@ -1,3 +1,5 @@
+
+
 export const EXAMPLE_PATH = 'blog-starter';
 export const CMS_NAME = 'Brainflames';
 export const HOME_OG_IMAGE_URL =
@@ -11,3 +13,4 @@ export const avatarHeight = 72;
 export const avatarImageDims = { width: 72, height: 72 };
 export const iconImageDims = { width: 92, height: 92 };
 export const maxReadMoreListSize = 5;
+export const thumbnailRootPath = `https://${process.env.IMAGE_STORAGE_URL}/images/`;

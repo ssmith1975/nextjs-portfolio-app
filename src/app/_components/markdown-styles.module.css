@@ -18,7 +18,7 @@
 }
 
 .projectbody div {
-   @apply md:text-sm pl-6 mt-3;
+   @apply md:text-lg pl-6 mt-3;
 }
 
 .projectbody div > p:before {

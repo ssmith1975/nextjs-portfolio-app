@@ -14,10 +14,15 @@ import {
   Project_Data,
   ProjectPreviewViewModel,
 } from './definitions';
+import {
+  thumbnailRootPath,
+} from './constants';
+
 
 // Skillsets
 export async function skillsetBySlugService(slug: string) {
   const result: Skillset_Single = await findSkillsetBySlug(slug);
+
   return result;
 }
 
@@ -59,11 +64,10 @@ export async function categoriesWithTechnologiesService(skillsetid: number) {
 export async function getProjectsService() {
   try {
     const result = await fetchProjects();
-    console.log('fetch the projects...');
+
     return result;
-  } catch (err) {
-    console.log('error msg...');
-    console.log(err);
+  } catch (err) {  
+    console.error(`Error fetching projects: ${err}`);
     return [];
   }
 
@@ -75,7 +79,6 @@ export async function getProjectPreviews(isFeatured: boolean = false) {
 
   try {
     let fetchedData: Array<Project_Data> = await fetchProjects();
-    //console.log('fetched projects...', fetchedData);
 
     if (!!isFeatured) {
       pastProjects = fetchedData.filter((p: Project_Data) => p.isFeature);
@@ -83,11 +86,9 @@ export async function getProjectPreviews(isFeatured: boolean = false) {
       pastProjects = fetchedData;
     }
 
-    //pastProjects = fetchedData.filter((p) => p.isFeature == true);
-    //console.log('fetch the projects...', pastProjects);
   } catch (err) {
-    console.log('error msg...');
-    console.log(err);
+
+    console.error(`Error fetching project previews: ${err}`);
   }
 
   const projectPreviews = pastProjects.map(async (project: Project_Data) => {
@@ -107,6 +108,9 @@ export async function getProjectPreviews(isFeatured: boolean = false) {
 
     const tmpDescription = description.replaceAll('<br />', '\n');
     const processedDescription = await markdownToHtml(tmpDescription || '');
+    const  thunbnail_image = thumbnail 
+      ? `${thumbnailRootPath}${thumbnail}` 
+      : '/assets/images/placeholder_2000x1000.png';
 
     return {
       id,
@@ -118,7 +122,7 @@ export async function getProjectPreviews(isFeatured: boolean = false) {
       endDate: new Date(endDate),
       url,
       slug,
-      thumbnail: thumbnail || 'placeholder_2000x1000.png',
+      thumbnail: thunbnail_image,
       client,
     } as ProjectPreviewViewModel;
   });

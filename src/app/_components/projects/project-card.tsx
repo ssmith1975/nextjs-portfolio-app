@@ -33,29 +33,17 @@ export default function ProjectCard({
 
   return (
     <div className="w-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg">
-      <div className="flex h-36 flex-col items-stretch bg-gradient-to-r from-orange-700 to-orange-500 p-6 pb-2 text-white">
-        <h2 className="mb-2 text-2xl font-bold">
-          <Link href={`/#${slug}`} className="hover:underline" title={title}>
+      <div className="flex h-24 flex-col items-stretch bg-gradient-to-r from-orange-700 to-orange-500 p-6 pb-2 text-white">
+        <h2 className="mb-2 text-xl font-bold">
             {title}
-          </Link>
         </h2>
-        <div className="mt-auto gap-2 border-t border-white text-white">
+
+      </div>
+        <div className="mt-auto gap-2 border-b border-orange-500 text-orange-700 px-6 pt-3 text-lg font-semibold">
           <span className="text-lg" title={client.name}>
             {client.name}
           </span>
         </div>
-      </div>
-
-      <div className="bg-white">
-        <CoverImage
-          slug={slug}
-          title={title}
-          src={`/assets/images/${thumbnail}`}
-          width={coverImageDims.width}
-          height={coverImageDims.height}
-          path="/projects"
-        />
-      </div>
 
       <div className="p-6">
         <button

@@ -137,12 +137,13 @@ export async function fetchProjects() {
   try {
     const data = await db_pool.sql<any>` 
       SELECT jsonb_agg(jsonb_build_object(
-          'projectId', p.id
+          'id', p.id
           ,'title', p.name
           ,'isFeature', p.isfeature
           , 'description', p.description
           , 'projectType', p.projecttype
           , 'slug', p.slug
+          , 'coverImage', p.coverimage
           , 'thumbnail', p.thumbnail
           , 'startDate', pca.startdate
           , 'endDate', pca.enddate

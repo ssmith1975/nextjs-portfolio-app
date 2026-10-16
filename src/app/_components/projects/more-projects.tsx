@@ -10,8 +10,8 @@ export function MoreProjects({ projects }: Props) {
   return (
     <section>
       <div
-        className="mb-16 grid grid-cols-1  content-stretch gap-y-10 
-        md:grid-cols-2 md:gap-x-12 md:gap-y-16 lg:gap-x-16"
+        className="mb-16 grid grid-cols-1 content-stretch gap-y-10 
+        md:grid-cols-2 2xl:grid-cols-3 md:gap-x-12 md:gap-y-16 lg:gap-x-16"
       >
         {projects.map((project) => (
           <article key={project.slug}>
